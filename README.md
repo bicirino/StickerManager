@@ -56,7 +56,9 @@ Para atender integralmente ao escopo da proposta, o sistema contempla:
 ```
 stickermanager/
 ├── buscar.php          # Tela com os 3 filtros avançados de busca (País, Posição, Status)
-├── conexao.php         # Script de conexão com o banco MySQL (PDO ou mysqli)
+├── db/                 # NOVA PASTA: Centraliza toda a camada e configuração de dados
+│   ├── conexao.php     # Script centralizado de instância de conexão com o banco MySQL
+│   └── script.sql      # Script do banco de dados (Criação das 6 tabelas + Carga Inicial/Seed)
 ├── editar.php          # Formulário e processamento para ATUALIZAR figurinhas 
 ├── excluir.php         # Script de processamento para EXCLUIR figurinhas/registros 
 ├── index.php           # Dashboard principal e LEITURA do checklist/inventário 
@@ -64,7 +66,6 @@ stickermanager/
 ├── logar.php           # Tela de autenticação e processamento do formulário de Login
 ├── logout.php          # Script que destrói a Session e desloga o usuário de forma segura
 ├── relatorio.php       # Script que roda a query consolidada e gera o arquivo PDF para download
-├── script.sql          # Script para o banco de dados (Criação das 6 tabelas + Carga Inicial/Seed)
 ├── sessao.php          # Arquivo que contém a trava de segurança (valida se o usuário está logado)
 ├── LICENSE             # Arquivo contendo os termos da Licença MIT do projeto
 └── README.md           # Documentação completa do projeto
