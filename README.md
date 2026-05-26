@@ -51,7 +51,76 @@ Para atender integralmente ao escopo da proposta, o sistema contempla:
 - **Banco de Dados (Persistência de Dados)**: MySQL;
 - **Interface do Usuário**: Bootstrap 5.3;
 - **Motor de Relatórios (Geração de PDF)**: FPDF ou Dompdf (Bibliotecas PHP leves e ideais que permitem converter consultas SQL diretamente em arquivos PDF);
---- 
+
+---
+## 🚀 Guia de Início Rápido
+
+### Pré-requisitos
+- **PHP 8.3+** com extensão `mysqli` habilitada
+- **MySQL 5.7+** ou **MariaDB** instalado e em execução
+- **Servidor Web** (Apache/Nginx com suporte a PHP)
+- **Navegador Web** moderno
+
+**💡 Recomendação**: Use **XAMPP** (ambiente acadêmico padrão) - inclui Apache, MySQL e PHP pré-configurados. [Baixe aqui](https://www.apachefriends.org/)
+
+### Passo 1: Preparar o Projeto
+
+1. Copie a pasta do projeto para: `C:\xampp\htdocs\StickerManager\`
+2. Inicie o painel de controle do XAMPP
+3. Ative os serviços: **Apache** e **MySQL**
+
+
+### Passo 2: Configurar o Banco de Dados
+
+1. Abra seu navegador e acesse: `http://localhost/phpmyadmin`
+2. Clique em **"Novo"** na barra lateral esquerda
+3. Crie uma nova base de dados com o nome: `sticker_manager`
+4. Selecione a codificação: **utf8mb4_unicode_ci**
+5. Clique em **"Criar"**
+6. Abra o arquivo `db/script.sql` com um editor de texto
+7. Copie todo o conteúdo do arquivo
+8. No phpMyAdmin, clique na aba **"SQL"**
+9. Cole o conteúdo e clique em **"Executar"**
+
+### Passo 3: Configurar Credenciais do Banco de Dados
+1. Abra o arquivo `db/conexao.php` em um editor de texto
+2. Localize as linhas com as credenciais (ao redor da linha 12-16):
+   ```php
+   $DB_HOST = 'localhost';    // Host do seu MySQL
+   $DB_USER = 'root';         // Seu usuário MySQL
+   $DB_PASS = '';             // Sua senha MySQL (deixe em branco se não tiver)
+   $DB_NAME = 'sticker_manager';
+   $DB_PORT = 3306;
+   ```
+3. Ajuste com suas credenciais reais do MySQL
+4. Salve o arquivo
+
+### Passo 4: Iniciar o Servidor Web
+
+O servidor já está pré-configurado no XAMPP! Basta garantir que **Apache** e **MySQL** estão ativados no painel de controle do XAMPP. Nenhuma configuração adicional necessária.
+
+### Passo 5: Acessar a Aplicação
+
+1. Abra seu navegador
+2. Acesse: `http://localhost/StickerManager/`
+3. Você será redirecionado para a página de login
+4. Use as credenciais de teste:
+   - **Usuário**: `usuario_teste`
+   - **Senha**: `teste123`
+
+### Passo 6: Explorar a Aplicação
+- **Dashboard**: Visualize seu checklist de figurinhas
+- **Inserir**: Adicione novas figurinhas à sua coleção
+- **Buscar**: Use os filtros avançados por País, Posição e Status
+- **Editar**: Atualize informações de figurinhas
+- **Excluir**: Remova figurinhas da coleção
+- **Relatório**: Gere um PDF com o resumo da sua coleção
+- **Logout**: Saia da aplicação com segurança
+
+### ✅ Pronto!
+Sua aplicação StickerManager está rodando! Comece a gerenciar sua coleção de figurinhas.
+
+---
 ## Estrutura do projeto 🚧
 ```
 stickermanager/
