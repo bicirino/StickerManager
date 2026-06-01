@@ -1,0 +1,10 @@
+.sticker-card{transition:transform .15s ease, box-shadow .15s ease;cursor:pointer;border:2px solid #dee2e6;border-radius:.5rem;padding:.5rem;text-align:center;background:#fff;position:relative}
+.sticker-card:hover{transform:translateY(-2px);box-shadow:0 .5rem 1rem rgba(0,0,0,.1)}
+.sticker-card.obtida{border-color:#198754;background:#d1e7dd}
+.sticker-card.repetida{border-color:#fd7e14;background:#fff3cd}
+.sticker-card .num{font-weight:700;font-size:1.1rem}
+.sticker-card .name{font-size:.78rem;color:#495057;line-height:1.1;margin-top:.15rem;min-height:2.2em}
+.sticker-card .badge-rep{position:absolute;top:-6px;right:-6px;font-size:.7rem}
+.progress-ring{width:120px;height:120px}
+.filter-chip{cursor:pointer}
+.bg-selecao{background:linear-gradient(135deg,#198754,#ffc107);color:#fff;padding:.4rem .8rem;border-radius:.3rem;font-weight:600}
