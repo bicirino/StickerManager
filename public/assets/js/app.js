@@ -22,6 +22,26 @@ document.addEventListener('click', async (ev) => {
   }
 });
 
+// Right-click para desselecionar
+document.addEventListener('contextmenu', async (ev) => {
+  const card = ev.target.closest('.sticker-card[data-fig-id]');
+  if (!card) return;
+  ev.preventDefault();
+  const id = card.dataset.figId;
+  const csrf = document.querySelector('meta[name="csrf"]').content;
+  const res = await fetch('index.php?r=unselect', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: 'figurinha_id=' + id + '&csrf=' + encodeURIComponent(csrf)
+  });
+  const data = await res.json();
+  if (data.ok) {
+    card.classList.remove('obtida', 'repetida');
+    const badge = card.querySelector('.badge-rep');
+    if (badge) badge.remove();
+  }
+});
+
 // Botões + / - de repetidas
 document.addEventListener('click', async (ev) => {
   const btn = ev.target.closest('.rep-btn');
