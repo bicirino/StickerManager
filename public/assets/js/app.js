@@ -22,6 +22,40 @@ document.addEventListener('click', async (ev) => {
   }
 });
 
+// Right-click para desselecionar
+document.addEventListener('contextmenu', async (ev) => {
+  const card = ev.target.closest('.sticker-card[data-fig-id]');
+  if (!card) return;
+  ev.preventDefault();
+  const id = card.dataset.figId;
+  const csrf = document.querySelector('meta[name="csrf"]').content;
+  const res = await fetch('index.php?r=unselect', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: 'figurinha_id=' + id + '&csrf=' + encodeURIComponent(csrf)
+  });
+  const data = await res.json();
+  if (data.ok) {
+    const quantidade = data.quantidade ?? 0;
+    const badge = card.querySelector('.badge-rep');
+    if (quantidade > 1) {
+      card.classList.add('obtida', 'repetida');
+      if (badge) {
+        badge.textContent = '+' + (quantidade - 1);
+      } else {
+        card.insertAdjacentHTML('beforeend', `<span class="badge bg-warning text-dark badge-rep">+${quantidade - 1}</span>`);
+      }
+    } else if (quantidade === 1) {
+      card.classList.add('obtida');
+      card.classList.remove('repetida');
+      if (badge) badge.remove();
+    } else {
+      card.classList.remove('obtida', 'repetida');
+      if (badge) badge.remove();
+    }
+  }
+});
+
 // Botões + / - de repetidas
 document.addEventListener('click', async (ev) => {
   const btn = ev.target.closest('.rep-btn');

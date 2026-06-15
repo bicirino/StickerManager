@@ -94,6 +94,14 @@ function ctrl_ajustar() {
     echo json_encode(['ok'=>true,'quantidade'=>$q]); exit;
 }
 
+function ctrl_unselect() {
+    require_login(); csrf_check();
+    header('Content-Type: application/json');
+    $fid = (int)($_POST['figurinha_id'] ?? 0);
+    $q = Colecao::unselect($_SESSION['user']['id'], $fid);
+    echo json_encode(['ok'=>true,'quantidade'=>$q]); exit;
+}
+
 // CRUD admin
 function ctrl_figurinhas() {
     require_admin();

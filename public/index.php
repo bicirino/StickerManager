@@ -15,6 +15,7 @@ $routes = [
     'repetidas'          => 'ctrl_repetidas',
     'toggle'             => 'ctrl_toggle',
     'ajustar'            => 'ctrl_ajustar',
+    'unselect'           => 'ctrl_unselect',
     'figurinhas'         => 'ctrl_figurinhas',
     'figurinha_form'     => 'ctrl_figurinha_form',
     'figurinha_salvar'   => 'ctrl_figurinha_salvar',
