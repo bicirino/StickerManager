@@ -36,9 +36,23 @@ document.addEventListener('contextmenu', async (ev) => {
   });
   const data = await res.json();
   if (data.ok) {
-    card.classList.remove('obtida', 'repetida');
+    const quantidade = data.quantidade ?? 0;
     const badge = card.querySelector('.badge-rep');
-    if (badge) badge.remove();
+    if (quantidade > 1) {
+      card.classList.add('obtida', 'repetida');
+      if (badge) {
+        badge.textContent = '+' + (quantidade - 1);
+      } else {
+        card.insertAdjacentHTML('beforeend', `<span class="badge bg-warning text-dark badge-rep">+${quantidade - 1}</span>`);
+      }
+    } else if (quantidade === 1) {
+      card.classList.add('obtida');
+      card.classList.remove('repetida');
+      if (badge) badge.remove();
+    } else {
+      card.classList.remove('obtida', 'repetida');
+      if (badge) badge.remove();
+    }
   }
 });
 

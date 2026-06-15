@@ -85,6 +85,22 @@ class Colecao {
         }
         return $nova;
     }
+
+    public static function unselect(int $uid, int $fid): int {
+        $st = db()->prepare("SELECT quantidade FROM minha_colecao WHERE usuario_id=? AND figurinha_id=?");
+        $st->execute([$uid,$fid]); $q = (int)($st->fetchColumn() ?: 0);
+        if ($q > 1) {
+            $nova = $q - 1;
+            $st = db()->prepare("UPDATE minha_colecao SET quantidade=? WHERE usuario_id=? AND figurinha_id=?");
+            $st->execute([$nova,$uid,$fid]);
+            return $nova;
+        }
+        if ($q === 1) {
+            $st = db()->prepare("DELETE FROM minha_colecao WHERE usuario_id=? AND figurinha_id=?");
+            $st->execute([$uid,$fid]);
+        }
+        return 0;
+    }
 }
 
 class Lookup {
